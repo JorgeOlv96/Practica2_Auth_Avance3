@@ -1,0 +1,19 @@
+//comportamiento del ngModel sin etiqueta <form>
+    //html
+    <input [(ngModel)]="name" #ctrl="ngModel" required>
+    //capa logica
+    name: string = '';
+//Comportamiento dentro de un form
+  //html
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+      <input name="first" ngModel required #first="ngModel">
+      <input name="last" ngModel>
+          <button>Submit</button>
+  </form>
+    //capa logica
+  onSubmit(f: NgForm) {
+  console.log(f.value);  // { first: '', last: '' }
+  console.log(f.valid);  // false
+  }
+
+En el contexto de un formulario principal, a menudo no es necesario incluir enlaces unidireccionales o bidireccionales, ya que el formulario principal se encarga de su  sincronizacion
